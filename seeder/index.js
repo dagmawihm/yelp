@@ -25,6 +25,7 @@ for (let a = 0; a<101; a++)
 {
     const camp = new Campground({
         title: titles[Math.floor(Math.random() * tlength)],
+        image: 'https://source.unsplash.com/collection/483251',
         price: Math.floor(Math.random() * (300 - 50 + 1)) + 50,
         description: descriptions[Math.floor(Math.random() * dlength)],
         location: `${cityStatePairs[Math.floor(Math.random() * clength)].city}, ${cityStatePairs[Math.floor(Math.random() * clength)].state}`,

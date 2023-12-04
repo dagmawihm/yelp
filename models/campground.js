@@ -5,8 +5,12 @@ const campgroundSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    price: {
+    image: {
         type: String,
+        required: true,
+    },
+    price: {
+        type: Number,
         required: true,
         min: 0,
     },

@@ -4,6 +4,8 @@ const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 
+const ejsMate = require('ejs-mate');
+
 // Import the Campground model from the module
 const Campground = require('./models/campground');
 
@@ -16,6 +18,8 @@ mongoose.connect('mongodb://127.0.0.1:27017/yelpcamp')
         console.log(err)
     });
 
+app.engine('ejs', ejsMate);
+    
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -53,13 +57,14 @@ app.patch('/campgrounds/:id', async (req, res) => {
     const { id } = req.params;
 
     const title = req.body.title;
+    const image = req.body.image;
     const price = req.body.price;
     const location = req.body.location;
     const description = req.body.description;
 
     const campground = await Campground.findByIdAndUpdate(
         id,
-        { title: title, price: price, location: location, description: description },
+        { title: title, image:image, price: price, location: location, description: description },
         { runValidators: true, new: true }
     );
     res.redirect(`/campgrounds/${campground._id}`);
@@ -78,12 +83,14 @@ app.delete('/campgrounds/:id', async (req, res) => {
 
 app.post('/campgrounds', async (req, res) => {
     const title = req.body.title;
+    const image = req.body.image;
     const price = req.body.price;
     const location = req.body.location;
     const description = req.body.description;
 
     const camp = new Campground({
         title: title,
+        image:image,
         price: price,
         location: location,
         description: description
