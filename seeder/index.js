@@ -24,6 +24,7 @@ const seed = async () =>{
 for (let a = 0; a<101; a++)
 {
     const camp = new Campground({
+        author: '65849dbaa117b6a3f5a046c6',
         title: titles[Math.floor(Math.random() * tlength)],
         image: 'https://source.unsplash.com/collection/483251',
         price: Math.floor(Math.random() * (300 - 50 + 1)) + 50,
